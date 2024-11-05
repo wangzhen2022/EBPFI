@@ -1,0 +1,50 @@
+Protocol: arp
+  Precision: 1.0
+  Recall: 0.5
+  F1 Score: 0.6666666666666666
+------------------------------
+Protocol: dns
+  Precision: 1.0
+  Recall: 0.8571428571428571
+  F1 Score: 0.923076923076923
+------------------------------
+Protocol: icmp
+  Precision: 1.0
+  Recall: 1.0
+  F1 Score: 1.0
+------------------------------
+Protocol: modbus
+  Precision: 0.8333333333333334
+  Recall: 0.8333333333333334
+  F1 Score: 0.8333333333333334
+------------------------------
+Protocol: nbns
+  Precision: 1.0
+  Recall: 0.8571428571428571
+  F1 Score: 0.923076923076923
+------------------------------
+Protocol: ntp
+  Precision: 0.75
+  Recall: 0.5
+  F1 Score: 0.6
+------------------------------
+Protocol: s7comm
+  Precision: 1.0
+  Recall: 0.5555555555555556
+  F1 Score: 0.7142857142857143
+------------------------------
+Protocol: smb
+  Precision: 0.6363636363636364
+  Recall: 0.4666666666666667
+  F1 Score: 0.5384615384615385
+------------------------------
+Protocol: tcp
+  Precision: 0.8333333333333334
+  Recall: 0.5555555555555556
+  F1 Score: 0.6666666666666667
+------------------------------
+Protocol: udp
+  Precision: 1.0
+  Recall: 1.0
+  F1 Score: 1.0
+------------------------------

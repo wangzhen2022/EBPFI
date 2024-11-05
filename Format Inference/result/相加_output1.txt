@@ -1,0 +1,60 @@
+Best F1 Score: 0.6395 with threshold 0.90
+test_action
+Precision: 0.6885
+Recall: 0.5783
+F1 Score: 0.6286
+********* 0.10449099540710449
+Best F1 Score: 0.7209 with threshold 0.80
+test_action
+Precision: 0.6429
+Recall: 0.8143
+F1 Score: 0.7185
+********* 0.10635972023010254
+Best F1 Score: 0.8206 with threshold 0.50
+test_action
+Precision: 0.7723
+Recall: 0.8667
+F1 Score: 0.8168
+********* 0.10408258438110352
+Best F1 Score: 0.7989 with threshold 0.90
+test_action
+Precision: 0.7720
+Recall: 0.8278
+F1 Score: 0.7989
+********* 0.10406351089477539
+Best F1 Score: 0.9755 with threshold 0.90
+test_action
+Precision: 0.9455
+Recall: 0.9905
+F1 Score: 0.9674
+********* 0.10393452644348145
+Best F1 Score: 0.4858 with threshold 0.20
+test_action
+Precision: 0.7109
+Recall: 0.3722
+F1 Score: 0.4886
+********* 0.10483980178833008
+Best F1 Score: 0.7740 with threshold 0.30
+test_action
+Precision: 0.9066
+Recall: 0.6648
+F1 Score: 0.7671
+********* 0.10434436798095703
+Best F1 Score: 0.4463 with threshold 0.90
+test_action
+Precision: 0.6915
+Recall: 0.2989
+F1 Score: 0.4174
+********* 0.10464739799499512
+Best F1 Score: 0.6295 with threshold 0.30
+test_action
+Precision: 0.7231
+Recall: 0.6556
+F1 Score: 0.6282
+********* 0.10717368125915527
+Best F1 Score: 0.9091 with threshold 0.10
+test_action
+Precision: 0.8333
+Recall: 1.0000
+F1 Score: 0.9091
+********* 0.10470724105834961

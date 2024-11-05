@@ -1,0 +1,140 @@
+[1,    20] loss: 1.034
+[1,    40] loss: 0.653
+[2,    20] loss: 0.606
+[2,    40] loss: 0.621
+[3,    20] loss: 0.605
+[3,    40] loss: 0.548
+[4,    20] loss: 0.569
+[4,    40] loss: 0.565
+Best F1 Score: 0.6099 with threshold 0.90
+test_action
+Precision: 0.7804
+Recall: 0.5033
+F1 Score: 0.6120
+********* 0.10188508033752441
+[1,    20] loss: 1.535
+[1,    40] loss: 0.795
+[2,    20] loss: 0.593
+[2,    40] loss: 0.591
+[3,    20] loss: 0.579
+[3,    40] loss: 0.571
+[4,    20] loss: 0.551
+[4,    40] loss: 0.549
+Best F1 Score: 0.9333 with threshold 0.70
+test_action
+Precision: 0.9695
+Recall: 0.9095
+F1 Score: 0.9386
+********* 0.10017251968383789
+[1,    20] loss: 1.135
+[1,    40] loss: 0.785
+[2,    20] loss: 0.608
+[2,    40] loss: 0.625
+[3,    20] loss: 0.596
+[3,    40] loss: 0.586
+[4,    20] loss: 0.557
+[4,    40] loss: 0.605
+Best F1 Score: 0.5663 with threshold 0.70
+test_action
+Precision: 0.7194
+Recall: 0.7806
+F1 Score: 0.5456
+********* 0.10110163688659668
+[1,    20] loss: 1.234
+[1,    40] loss: 0.677
+[2,    20] loss: 0.560
+[2,    40] loss: 0.570
+[3,    20] loss: 0.563
+[3,    40] loss: 0.550
+[4,    20] loss: 0.542
+[4,    40] loss: 0.554
+Best F1 Score: 0.7897 with threshold 0.90
+test_action
+Precision: 0.8136
+Recall: 0.7639
+F1 Score: 0.7880
+********* 0.09871482849121094
+[1,    20] loss: 1.228
+[1,    40] loss: 0.722
+[2,    20] loss: 0.620
+[2,    40] loss: 0.571
+[3,    20] loss: 0.564
+[3,    40] loss: 0.594
+[4,    20] loss: 0.555
+[4,    40] loss: 0.553
+Best F1 Score: 0.9650 with threshold 0.90
+test_action
+Precision: 0.9780
+Recall: 0.9524
+F1 Score: 0.9650
+********* 0.09801197052001953
+[1,    20] loss: 1.085
+[1,    40] loss: 0.689
+[2,    20] loss: 0.571
+[2,    40] loss: 0.574
+[3,    20] loss: 0.565
+[3,    40] loss: 0.565
+[4,    20] loss: 0.537
+[4,    40] loss: 0.542
+Best F1 Score: 0.4949 with threshold 0.80
+test_action
+Precision: 0.7335
+Recall: 0.3708
+F1 Score: 0.4926
+********* 0.09859871864318848
+[1,    20] loss: 1.176
+[1,    40] loss: 0.718
+[2,    20] loss: 0.634
+[2,    40] loss: 0.579
+[3,    20] loss: 0.569
+[3,    40] loss: 0.540
+[4,    20] loss: 0.553
+[4,    40] loss: 0.549
+Best F1 Score: 0.7029 with threshold 0.70
+test_action
+Precision: 0.7920
+Recall: 0.6204
+F1 Score: 0.6957
+********* 0.09813547134399414
+[1,    20] loss: 1.082
+[1,    40] loss: 0.600
+[2,    20] loss: 0.568
+[2,    40] loss: 0.514
+[3,    20] loss: 0.506
+[3,    40] loss: 0.521
+[4,    20] loss: 0.502
+[4,    40] loss: 0.514
+Best F1 Score: 0.3299 with threshold 0.20
+test_action
+Precision: 0.5813
+Recall: 0.2344
+F1 Score: 0.3341
+********* 0.09864139556884766
+[1,    20] loss: 1.166
+[1,    40] loss: 0.736
+[2,    20] loss: 0.605
+[2,    40] loss: 0.605
+[3,    20] loss: 0.597
+[3,    40] loss: 0.582
+[4,    20] loss: 0.589
+[4,    40] loss: 0.578
+Best F1 Score: 0.6154 with threshold 0.90
+test_action
+Precision: 0.6879
+Recall: 0.5593
+F1 Score: 0.6170
+********* 0.09871625900268555
+[1,    20] loss: 1.279
+[1,    40] loss: 0.728
+[2,    20] loss: 0.607
+[2,    40] loss: 0.588
+[3,    20] loss: 0.575
+[3,    40] loss: 0.674
+[4,    20] loss: 0.587
+[4,    40] loss: 0.590
+Best F1 Score: 0.7769 with threshold 0.90
+test_action
+Precision: 0.6364
+Recall: 0.9800
+F1 Score: 0.7717
+********* 0.09905242919921875
