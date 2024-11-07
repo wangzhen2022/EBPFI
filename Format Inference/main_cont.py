@@ -8,7 +8,7 @@ from torch.utils.data import TensorDataset, DataLoader
 import matplotlib.pyplot as plt
 import torchmetrics
 from torch.utils.data import random_split
-from model1 import DeepLabv3Plus
+from model import DeepLabv3Plus
 import time
 import math
 device = torch.device('cuda:2' if torch.cuda.is_available() else 'cpu')

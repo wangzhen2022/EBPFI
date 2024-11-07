@@ -35,7 +35,7 @@ class DeepLabv3Plus(nn.Module):
         x = F.adaptive_avg_pool2d(y, (1, 64))
 
         x = torch.flatten(x, 1)
-        # exit()
+
         return x, y
     
     def backbone_conv(self, x):
@@ -81,22 +81,67 @@ class ASPP(nn.Module):
         
         return x
 
+class ChannelAttention(nn.Module):
+    def __init__(self, in_planes, ratio=16):
+        super(ChannelAttention, self).__init__()
+        self.avg_pool = nn.AdaptiveAvgPool2d(1)
+        self.max_pool = nn.AdaptiveMaxPool2d(1)
+        
+        self.fc1 = nn.Conv2d(in_planes, in_planes // ratio, 1, bias=False)
+        self.relu1 = nn.ReLU()
+        self.fc2 = nn.Conv2d(in_planes // ratio, in_planes, 1, bias=False)
+        
+        self.sigmoid = nn.Sigmoid()
+
+    def forward(self, x):
+        avg_out = self.fc2(self.relu1(self.fc1(self.avg_pool(x))))
+        max_out = self.fc2(self.relu1(self.fc1(self.max_pool(x))))
+        out = avg_out + max_out
+        return self.sigmoid(out)
+
+class SpatialAttention(nn.Module):
+    def __init__(self, kernel_size=7):
+        super(SpatialAttention, self).__init__()
+        assert kernel_size in (3, 7), 'kernel_size must be 3 or 7'
+        padding = 3 if kernel_size == 7 else 1
+
+        self.conv1 = nn.Conv2d(2, 1, kernel_size, padding=padding, bias=False)
+        self.sigmoid = nn.Sigmoid()
+
+    def forward(self, x):
+        avg_out = torch.mean(x, dim=1, keepdim=True)
+        max_out, _ = torch.max(x, dim=1, keepdim=True)
+        x = torch.cat([avg_out, max_out], dim=1)
+        x = self.conv1(x)
+        return self.sigmoid(x)
+
+class CBAM(nn.Module):
+    def __init__(self, in_planes, ratio=16, kernel_size=7):
+        super(CBAM, self).__init__()
+        self.channel_attention = ChannelAttention(in_planes, ratio)
+        self.spatial_attention = SpatialAttention(kernel_size)
+
+    def forward(self, x):
+        x = x * self.channel_attention(x)
+        x = x * self.spatial_attention(x)
+        return x
+
 class BoundaryGuidedFilter(nn.Module):
     def __init__(self, in_channels, out_channels):
         super(BoundaryGuidedFilter, self).__init__()
         self.mean_filter = MeanFilter(out_channels)
         self.local_linear_model = LocalLinearModel(out_channels)
+        self.bn = nn.BatchNorm2d(out_channels)
+        self.cbam = CBAM(out_channels)  # 注意力机制
 
     def forward(self, W):
         mean_filtered = self.mean_filter(W)
         local_linear = self.local_linear_model(W)
         combined = mean_filtered + local_linear
-        # print(combined.shape)
+        # combined = self.bn(combined)  # 融合后添加BatchNorm
+        combined = self.cbam(combined)  # 添加CBAM注意力机制
         upsampled = F.interpolate(combined, scale_factor=4, mode='bilinear', align_corners=False)
-        # print(upsampled.shape)
         return upsampled
-
-
 
 class MeanFilter(nn.Module):
     def __init__(self, channels):
@@ -105,14 +150,14 @@ class MeanFilter(nn.Module):
     
     def forward(self, x):
         return self.avg_pool(x)
-    
+
 class LocalLinearModel(nn.Module):
     def __init__(self, channels):
         super(LocalLinearModel, self).__init__()
-        self.conv = nn.Conv2d(channels,channels , kernel_size=3, padding=1, bias=False)
+        self.conv = nn.Conv2d(channels, channels, kernel_size=3, padding=1, bias=False)
         self.bn = nn.BatchNorm2d(channels)
         self.relu = nn.ReLU()
-        self.final_conv = nn.Conv2d(channels, channels, kernel_size=1,  bias=False)
+        self.final_conv = nn.Conv2d(channels, channels, kernel_size=1, bias=False)
     
     def forward(self, x):
         x = self.conv(x)
@@ -132,7 +177,7 @@ class Decoder(nn.Module):
         self.conv3 = nn.Conv2d(256, 256, kernel_size=3, padding=1, bias=False)
         self.bn3 = nn.BatchNorm2d(256)
         self.conv4 = nn.Conv2d(256, 32, kernel_size=1)
-        self.bgf = BoundaryGuidedFilter(256, 32)#num_classes
+        self.bgf = BoundaryGuidedFilter(256, 32)  # num_classes
 
     def forward(self, x, low_level_features):
         low_level_features = self.conv1(low_level_features)
@@ -145,37 +190,12 @@ class Decoder(nn.Module):
         x = self.conv2(x)
         x = self.bn2(x)
         x = self.relu(x)
-        x = self.conv3(x)
-        x = self.bn3(x)
-        x = self.relu(x)
+        # x = self.conv3(x)
+        # x = self.bn3(x)
+        # x = self.relu(x)
         x = self.conv4(x)
 
-        # Apply Boundary Guided Filter
+        # 应用Boundary Guided Filter
         x = self.bgf(x)
 
         return x
-
-# class MeanFilter(nn.Module):
-#     def __init__(self, channels):
-#         super(MeanFilter, self).__init__()
-#         self.channels = channels
-        
-#     def forward(self, x):
-#         # Detach the tensor from the computation graph and convert to numpy
-#         n, c, h, w = x.shape
-#         if c == 1:
-#             x_np = x.squeeze(1).detach().cpu().numpy()  # Shape: (n, h, w)
-#         else:
-#             x_np = x.permute(0, 2, 3, 1).detach().cpu().numpy()  # Shape: (n, h, w, c)
-        
-#         blurred_list = []
-#         for img in x_np:
-#             if self.channels == 1:
-#                 img_blurred = cv2.blur(img, (5, 5))
-#                 blurred_list.append(torch.tensor(img_blurred).unsqueeze(0))
-#             else:
-#                 img_blurred = cv2.blur(img, (5, 5))
-#                 blurred_list.append(torch.tensor(img_blurred).permute(2, 0, 1))
-        
-#         blurred = torch.stack(blurred_list).to(x.device)
-#         return blurred
