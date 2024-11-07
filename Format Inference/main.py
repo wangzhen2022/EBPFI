@@ -43,7 +43,7 @@ def create_dataloader(data, labels):
     image_labels = np.array(image_labels)
     return images, image_labels
 
-def load_protocol_data(protocol_name, base_path='./JSON/', num_rows=20000):
+def load_protocol_data(protocol_name, base_path='./JSON/', num_rows=2000):
     data = pd.read_csv(f'{base_path}{protocol_name}_data.csv', header=None).iloc[:num_rows,0:32].values
     labels = pd.read_csv(f'{base_path}{protocol_name}_labels.csv', header=None).iloc[:num_rows,0:32].values
 
@@ -201,35 +201,6 @@ for i in range(len(data_labels_pairs)):
     f1 = torchmetrics.F1Score(task='binary', average='none', num_classes=64).to(device)
     from sklearn.metrics import f1_score
     best_threshold = 0.5
-    best_f1 = 0.0
-    for threshold in np.arange(0.1, 1.0, 0.1):
-        all_outputs = []
-        all_labels = []
-        with torch.no_grad():
-            for samples, labels1 in test_loader:
-                samples = samples.to(device, torch.float)
-                labels1 = labels1.to(device, torch.float)
-                outputs, _ = model(samples)
-                all_outputs.append(outputs)
-                all_labels.append(labels1)
-
-            all_outputs = torch.cat(all_outputs, dim=0)
-            all_labels = torch.cat(all_labels, dim=0)
-
-            # Apply Sigmoid activation
-            all_outputs = torch.sigmoid(all_outputs)
-
-            # Convert to binary predictions using the current threshold
-            binary_predictions = (all_outputs > threshold).float()
-
-            # Compute F1 score using the custom metrics function
-            precision, recall, f1_value = calculate_metrics(all_labels.cpu().numpy().flatten(), binary_predictions.cpu().numpy().flatten())
-
-            if f1_value > best_f1:
-                best_f1 = f1_value
-                best_threshold = threshold
-
-    print(f"Best F1 Score: {best_f1:.4f} with threshold {best_threshold:.2f}")
 
     print("test_action")
     all_outputs = []
