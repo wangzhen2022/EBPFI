@@ -4,7 +4,7 @@ from collections import Counter
 import math
 
 # Load JSON data from the file
-with open('./JSON-原先/dns.json', 'r', encoding='utf-8') as f:
+with open('./JSON/dns.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 dns_traffic = []

@@ -4,7 +4,7 @@ import math
 from collections import Counter
 
 # Load JSON data from the file
-with open('./JSON-原先/arp.json', 'r', encoding='utf-8') as f:
+with open('./JSON/arp.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 arp_traffic = []

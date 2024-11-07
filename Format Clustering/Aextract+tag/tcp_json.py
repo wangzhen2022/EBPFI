@@ -4,7 +4,7 @@ from collections import Counter
 import math
 
 # Load JSON data from the file
-with open('./JSON-原先/tcp.json', 'r', encoding='utf-8') as f:
+with open('./JSON/tcp.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 tcp_traffic = []

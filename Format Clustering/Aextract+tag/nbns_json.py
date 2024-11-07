@@ -65,7 +65,7 @@ def write_to_csv(output_csv_path, nbns_traffic):
             writer.writerow([traffic['hex_data'], traffic['length'], traffic['entropy'], traffic['label_code']])
 
 # 主程序
-file_paths = ['./JSON-原先/nbns.json', './JSON-原先/nbns1.json', './JSON-原先/nbns2.json']  # 存储JSON文件的路径
+file_paths = ['./JSON/nbns.json', './JSON/nbns1.json', './JSON/nbns2.json']  # 存储JSON文件的路径
 output_csv_path = './extract-方便ET-BERT/nbns/nbns_traffic.csv'  # 输出CSV文件的路径
 
 nbns_traffic = []

@@ -4,7 +4,7 @@ from collections import Counter
 import math
 
 # 加载JSON文件中的数据
-with open('./JSON-原先/modbus.json', 'r', encoding='utf-8') as f:
+with open('./JSON/modbus.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 modbus_traffic = []

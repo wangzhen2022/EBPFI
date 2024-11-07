@@ -3,7 +3,7 @@ import csv
 from collections import Counter
 import math
 
-with open('./JSON-原先/ntp.json', 'r', encoding='utf-8') as f:
+with open('./JSON/ntp.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 
