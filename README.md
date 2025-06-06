@@ -4,3 +4,5 @@ A protocol reverse engineering(PRE) tool that accurately accomplishes format inf
 ## Running Environment.
 
 We summarize the major setup instructions as follows:
+
+Pending the review, we will publish the experimental data soon.
