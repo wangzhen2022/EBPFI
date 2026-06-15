@@ -1,4 +1,4 @@
-# Semantic Protocol Format Inference
+# Protocol Format Inference
 
 The project treats protocol payload bytes as 64x64 "images" and predicts field boundaries (start positions) for 10 common network/industrial protocols.
 
